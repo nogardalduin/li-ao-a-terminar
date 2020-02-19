@@ -1,0 +1,79 @@
+interface loopback (numero da interface)
+
+R1
+
+en
+conf t
+interface gigabitEthernet 0/0
+ip address 192.168.4.1 255.255.254.0
+no shutdown
+exit
+interface gigabitEthernet 0/1
+ip address 172.16.10.1 255.255.255.252
+no shutdown
+exit
+interface gigabitEthernet 0/2
+ip address 172.16.10.5 255.255.255.252
+no shutdown
+exit
+interface serial 0/1/0
+ip address 172.16.10.17 255.255.255.252
+no shutdown
+exit
+do wr
+
+R2
+
+en
+conf t
+interface gigabitEthernet 0/2
+ip address 192.168.0.1 255.255.252.0
+no shutdown
+exit
+interface gigabitEthernet 0/1
+ip address 172.16.10.2 255.255.255.252
+no shutdown
+exit
+interface gigabitEthernet 0/0
+ip address 172.16.10.9 255.255.255.252
+no shutdown
+do wr
+
+R3
+
+en
+conf t
+interface gigabitEthernet 0/2
+ip address 192.168.6.1 255.255.255.128
+no shutdown
+exit
+interface gigabitEthernet 0/0
+ip address 172.16.10.6 255.255.255.252
+no shutdown
+exit
+interface gigabitEthernet 0/1
+ip address 172.16.10.13 255.255.255.252
+no shutdown
+do wr
+
+R4
+
+en
+conf t
+interface gigabitEthernet 0/0
+ip address 172.16.10.14 255.255.255.252
+no shutdown
+exit
+interface gigabitEthernet 0/1
+ip address 172.16.10.10 255.255.255.252
+no shutdown
+exit
+interface serial 0/0/0
+ip address 200.0.0.1 255.255.255.252
+no shutdown
+exit
+interface serial 0/0/1
+ip address 172.16.10.18 255.255.255.252
+no shutdown
+exit
+do wr
